@@ -104,7 +104,7 @@
 			}
 		}
 
-		public function edituser($id){
+		public function viewuser($id){
 			if ($this->session->userdata('Role')!='Admin')
 			{
 				redirect('tickets');
@@ -112,10 +112,37 @@
 			else
 			{
 			$data['users'] = $this->User_model->view_user($id);
-			$data['title'] = "test";
+			$data['title'] = "Edit user";
+			$this->form_validation->set_rules('firstName', 'FirstName', 'required');
+            $this->form_validation->set_rules('lastName', 'LastName', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('roles', 'Roles', 'required');
 			$this->load->view('templates/header');
 			$this->load->view('users/edit', $data);
 			$this->load->view('templates/footer');
+			}			
+		}
+
+		public function deleteuser($id){
+			if ($this->session->userdata('Role')!='Admin')
+			{
+				redirect('tickets');
+			}
+			else
+			{
+			$data['users'] = $this->User_model->delete_user($id);
+			redirect('tickets');
+			}			
+		}
+			public function edituser(){
+			if ($this->session->userdata('Role')!='Admin')
+			{
+				redirect('tickets');
+			}
+			else
+			{
+			$data['users'] = $this->User_model->edit_user();
+			redirect('tickets');
 			}			
 		}
 	}

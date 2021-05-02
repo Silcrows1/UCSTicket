@@ -7,8 +7,19 @@
 	transform: translate(-50%, -50%);
 	text-align:center;
 }
-label{
-	float:left;
+.navi{
+	display:block;
+	float:right;
+	margin:0vw 1vw 0vw 1vw;
+}
+.navbar > .container{
+	display:block;
+}
+nav{
+	margin-bottom:3vh;
+}
+label {
+	float: left;
 }
 .loginelement{
 	margin:1vh 0vh 2vh 0vh;

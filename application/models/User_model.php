@@ -43,8 +43,28 @@
 			$this->db->from('users');
 			$this->db->where('users.id', $id);
 			$userfind = $this->db->get();
-			var_dump($userfind);
-			print_r($this->db->last_query());    
+
+
 			return $userfind->result_array();
 		}
+		public function delete_user($id){
+			$this->db->where('id', $id);
+			$this->db->delete('users');
+			return true;
+		}
+		public function edit_user(){
+			$data =array(
+            'id' => $this->input->post('id'),
+            'FirstName' => $this->input->post('firstName'),
+            'LastName' => $this->input->post('lastName'),
+			'department' => $this->input->post('department'),
+            'Email'=> $this->input->post('email'),
+			'roles'=> $this->input->post('roles')
+			);
+			//where id=db id, set(update) entry with new variables
+			$this->db->where('id', $this->input->post('id'));
+			$this->db->set($data);
+			return $this->db->update('users', $data);
+		}
+		
 	}

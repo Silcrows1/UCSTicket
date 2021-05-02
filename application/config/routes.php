@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$route['users/edit/(:any)'] = 'users/edituser/$1';
+$route['itassets/delete/(:any)'] = 'itassets/deleteasset/$1';
+$route['users/delete/(:any)'] = 'users/deleteuser/$1';
+$route['users/view/(:any)'] = 'users/viewuser/$1';
 $route['tickets/(:any)'] = 'tickets/view/$1';
 $route['tickets'] ='tickets/index';
 $route['default_controller'] = 'pages/view';

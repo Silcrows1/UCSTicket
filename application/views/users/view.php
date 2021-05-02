@@ -18,10 +18,11 @@
 			<td><?php echo $user['email'] ?></td>
 			<td><?php echo $user['department'] ?></td>
 			<td><?php echo $user['roles'] ?></td>
-			<td><a class="btn btn-primary MSButton" href="<?php echo base_url('/users/edit/'.$user['id']) ?>" style="max-width:100px;" role="button">Edit</a></td>
+			<td><a class="btn btn-primary MSButton" href="<?php echo base_url('/users/view/'.$user['id']) ?>" style="max-width:100px;" role="button">Edit</a></td>
 			<td><a class="btn btn-primary MSButton" href="<?php echo base_url('/users/delete/'.$user['id']) ?>" style="max-width:100px;" role="button">Delete</a></td>
 
 		  </tr>
 	<?php endforeach; ?>
 	</table> 
+	<a class="btn btn-primary MSButton" href="<?php echo base_url('/users/register/')?>" style="max-width:150px; margin-top:2vh;" role="button">Create User</a>
 </div>
