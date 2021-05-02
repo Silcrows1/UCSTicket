@@ -63,8 +63,23 @@
 			}
 			else
 			{
-			$data['users'] = $this->ITAsset_model->edit_asset();
+			$data['assets'] = $this->ITAsset_model->edit_asset();
 			redirect('tickets');
 			}	
 		}
+		        
+        public function search(){
+            $form_data = $this->input->post('keyword');
+            $data['assets'] = $this->ITAsset_model->search_assets($form_data);
+            //if the data post is empty, redirect to posts.
+            if(empty($data['assets'])){
+                redirect('tickets');
+            }   
+            //load page with data
+			$data['title']= 'Assets Found';
+            $this->load->view('templates/header');
+			$this->load->view('assets/view', $data);
+			$this->load->view('templates/footer');
+
+        }
 }

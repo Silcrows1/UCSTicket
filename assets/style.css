@@ -12,8 +12,13 @@
 	float:right;
 	margin:0vw 1vw 0vw 1vw;
 }
-.navbar > .container{
-	display:block;
+.searchbar{
+	float:right;
+	margin-bottom:3vh;
+	padding-right:2vw;
+}
+.navbar > .container {
+	display: block;
 }
 nav{
 	margin-bottom:3vh;

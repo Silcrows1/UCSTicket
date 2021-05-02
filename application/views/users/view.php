@@ -1,3 +1,14 @@
+<div class="container searchbar col-lg-6 col-sm-12 col-xs-12">  
+	<form action="<?php echo base_url(); ?>users/search" method = "post" class="searchbar">
+	<label for="keyword">Search
+	<input type="text" name = "keyword" label="Search" />
+	<input type="submit" value = "Search" />
+	</label>
+	</form>
+	<br>
+	<br>
+</div>
+
 <h2><?= $title ?></h2>
 
 <div class="container" style="flex-wrap:wrap; display:flex;	">	

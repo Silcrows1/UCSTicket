@@ -34,4 +34,17 @@ class ITAsset_model extends CI_model{
 			$this->db->set($data);
 			return $this->db->update('assets', $data);
 		}
+		public function search_assets($keyword){			
+            //creating query with CI query builder, joining categories and posts table and building query that looks for a keyword
+            //in posts body and title and comments name and body.
+            $this->db->from('assets');            
+            $this->db->select('*');
+            $this->db->like('assets.AssetName', $keyword);
+            $this->db->or_like('assets.AssetType',$keyword);
+            $this->db->or_like('assets.AssetRoom',$keyword);
+            $query = $this->db->get();
+			$str = $this->db->last_query();
+            return $query->result_array();
+			
+        }
 	}

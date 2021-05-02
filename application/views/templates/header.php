@@ -11,14 +11,16 @@
       <img src="<?php echo base_url(); ?>assets/icon.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
       UCSTickets
     </a>
-	<?php if($this->session->userdata('logged_in')) : ?>
-	<a class="btn navi btn-primary MSButton" href="<?php echo base_url('/users/logout') ?>" style="max-width:100px;" role="button">Logout</a>
-	<?php endif ?>
+	
 	<?php if($this->session->userdata('Role')=='Admin') : ?>
 	<a class="btn navi btn-primary MSButton" href="<?php echo base_url('/users/viewusers') ?>" style="max-width:120px;" role="button">View Users</a>
 	<a class="btn navi btn-primary MSButton" href="<?php echo base_url('/itassets/viewassets') ?>" style="max-width:120px;" role="button">View Assets</a>
 	<?php endif ?>	
+	<?php if($this->session->userdata('logged_in')) : ?>	
+	<a class="btn navi btn-primary MSButton" href="<?php echo base_url('/users/logout') ?>" style="max-width:100px;" role="button">Logout</a>
 	<a class="btn navi btn-primary MSButton" href="<?php echo base_url('tickets') ?>" style="max-width:100px;" role="button">Home</a>
+	<?php endif ?>
+	
 	
   </div>
 </nav>

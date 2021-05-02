@@ -145,4 +145,18 @@
 			redirect('tickets');
 			}			
 		}
+		public function search(){
+            $form_data = $this->input->post('keyword');
+            $data['users'] = $this->User_model->search_users($form_data);
+            //if the data post is empty, redirect to posts.
+            if(empty($data['users'])){
+                redirect('tickets');
+            }   
+            //load page with data
+			$data['title']= 'Users Found';
+            $this->load->view('templates/header');
+			$this->load->view('users/view', $data);
+			$this->load->view('templates/footer');
+
+        }
 	}

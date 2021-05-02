@@ -66,5 +66,20 @@
 			$this->db->set($data);
 			return $this->db->update('users', $data);
 		}
+		public function search_users($keyword){			
+            //creating query with CI query builder, joining categories and posts table and building query that looks for a keyword
+            //in posts body and title and comments name and body.
+            $this->db->from('users');            
+            $this->db->select('*');
+            $this->db->like('FirstName', $keyword);
+            $this->db->or_like('LastName',$keyword);
+            $this->db->or_like('roles',$keyword);
+			$this->db->or_like('email',$keyword);
+			$this->db->or_like('department',$keyword);
+            $query = $this->db->get();
+			$str = $this->db->last_query();
+            return $query->result_array();
+			
+        }
 		
 	}
