@@ -1,0 +1,74 @@
+.Center {
+	margin: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-right: -50%;
+	transform: translate(-50%, -50%);
+	text-align:center;
+}
+label{
+	float:left;
+}
+.loginelement{
+	margin:1vh 0vh 2vh 0vh;
+}
+.userstable, th, td {
+	border-style: solid;
+	border-width: 1px;
+	text-align: center;
+}
+th {
+	background-color: #e0e0e0;
+}
+.login{
+	max-width:800px;
+}
+.login input {
+	margin-top: 1vh;
+	margin-bottom: 1vh;
+}
+.dot {
+	height: 20px;
+	width: 20px;
+	background-color: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+	background-color: red;
+	vertical-align: middle;
+	margin-right: 0.5vw;
+}
+.container {
+	align-content:center;
+}
+.card{
+	border-style:solid;
+	border-width:2px;
+	margin:0.1vw;
+	flex-wrap:wrap;
+}
+.open {
+	margin-top:3vh;
+}
+.posttitle{
+	align-self:center;
+}
+.sampleticketbody {
+	min-height: 6vh;
+
+	background-color: #f2f2f2;
+}
+.openticket{
+	text-align:center;
+}
+.tickets {
+	padding: 1vw;
+}
+.card {
+	display: inline-flex;
+	min-width: 200px;
+	flex-grow: 4;
+}
+.status{
+	display:inline-block;
+}
