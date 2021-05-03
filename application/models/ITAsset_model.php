@@ -46,4 +46,11 @@ class ITAsset_model extends CI_model{
 			$str = $this->db->last_query();
             return $query->result_array();			
         }
+		public function view_assets_ticket($id){
+
+			$this->db->join('assets', 'assets.id = assetsaffected.assetid','left');
+			$this->db->select('*');
+			$query=$this->db->get_where('assetsaffected', array('assetsaffected.ticketid' => $id));
+            return $query->result_array();
+		}
 	}

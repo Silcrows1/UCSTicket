@@ -22,6 +22,13 @@
 						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> </a></small><br>
 						<p><?php echo $ticket['body']; ?> </p>        
 					</div>	
+					<h5>Assets Affected</h5>
+					<?php foreach($assets as $asset) : ?>
+					<div class="row-3">
+					
+						<p><?php echo $asset['AssetName']; ?> <?php echo $asset['AssetType']; ?> </p>
+					</div>
+					<?php endforeach; ?>
 				</div>
 			<a class="btn btn-primary" href="<?php echo base_url('/tickets/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Add comment</a>
 		</div>

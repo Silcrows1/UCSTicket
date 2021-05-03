@@ -1,3 +1,4 @@
+
 <div class="container searchbar col-lg-6 col-sm-12 col-xs-12">  
 	<form action="<?php echo base_url(); ?>tickets/search" method = "post" class="searchbar">
 	<label for="keyword">Search
@@ -16,7 +17,6 @@
 		<option value="All">View all</option>
     </select>
 </form>
-
 
 <h2><?= $title ?></h2>
 <!--prevent users with no session from viewing tickets -->
@@ -46,7 +46,8 @@
 						}
 						?>
 						<br>
-						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> for <?php echo $ticket['raisedBy']; ?> </a></small><br>
+						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> for <?php echo $ticket['raisedBy']; ?></small><br>
+						<small class="post-date"><a class="effect-box" href=<?php if($ticket['ticketType'] =='General'){echo "general";}else{echo "technical";}?> <b> <?php echo $ticket['ticketType']; ?></b></a></small><br>
 						<br>
 						<p class="sampleticketbody"><?php echo word_limiter($ticket['body'], 20); ?></p>
 					</div>	
