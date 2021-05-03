@@ -44,7 +44,6 @@ class ITAsset_model extends CI_model{
             $this->db->or_like('assets.AssetRoom',$keyword);
             $query = $this->db->get();
 			$str = $this->db->last_query();
-            return $query->result_array();
-			
+            return $query->result_array();			
         }
 	}

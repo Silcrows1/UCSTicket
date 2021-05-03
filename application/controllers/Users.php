@@ -74,7 +74,7 @@
 			$this->session->unset_userdata('logged_in');
 			$this->session->unset_userdata('user_id');
 			$this->session->unset_userdata('email');
-
+			$this->session->sess_destroy();
 			redirect('users/login');
 		}
 		//check if email exists
