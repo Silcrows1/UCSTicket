@@ -1,3 +1,31 @@
+p {
+	font-family: 'Cantarell', serif;
+}
+
+small {
+	font-family: 'Cantarell', serif;
+}
+
+h1 {
+	font-family: 'Cantarell', serif;
+}
+
+h2 {
+	font-family: 'Cantarell', serif;
+}
+
+h3 {
+	font-family: 'Cantarell', serif;
+}
+
+h4 {
+	font-family: 'Cantarell', serif;
+}
+
+.row {
+	--bs-gutter-x: 0rem;
+}
+
 .Center {
 	margin: 0;
 	position: absolute;
@@ -94,13 +122,38 @@ a:hover {
 .tickets {
 	padding: 1vw;
 }
+.body {
+	margin-top: 4vh;
+	margin-bottom: 4vh;
+	box-sizing: border-box;
+}
+.card {
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 1px 1px 3px black;
+	margin:0.2vw;
+}
+.comments {
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 1px 1px 3px black;
+	margin: 0.5vh 0vh 0.5vh 0vh;
+}
+.viewbtn{
+	align-self:center;
+	margin-bottom:2vh;
+}
+.postcard{
+	padding:1vw 1vw 1vw 1vw;
+}
 .card {
 	display: inline-flex;
 	min-width: 200px;
 	flex-grow: 4;
 }
-.status{
-	display:inline-block;
+.statusdiv {
+	width: 100%;
+	display: flex;
 }
 select {
 	-webkit-appearance: button;
@@ -131,22 +184,4 @@ select {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	margin-bottom:3vh;
-}
-p {
-	font-family: 'Amiri', serif;
-}
-small {
-	font-family: 'Amiri', serif;
-}
-h1 {
-	font-family: 'Amiri', serif;
-}
-h2 {
-	font-family: 'Amiri', serif;
-}
-h3 {
-	font-family: 'Amiri', serif;
-}
-h4 {
-	font-family: 'Amiri', serif;
 }

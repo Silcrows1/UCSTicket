@@ -16,6 +16,7 @@
 			$data['tickets'] = $this->Ticket_model->view_ticket($id);
 			//retrieve assets for the ticket
 			$data['assets'] = $this->ITAsset_model->view_assets_ticket($id);
+			$data['comments'] = $this->Comment_model->getComments($id);
 			$data['title'] = "test";
 			$this->load->view('templates/header');
 			$this->load->view('tickets/view', $data);

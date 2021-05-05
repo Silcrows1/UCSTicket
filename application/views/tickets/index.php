@@ -26,10 +26,11 @@
 <!--Ticket card foreach loop -->
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>
-		<div class="card tickets " style="display:inline-flex; min-width:200px; flex-grow:4; ">
+		<div class="card tickets <?php if ($ticket['status'] =="Open") {echo 'active';} else {echo 'closed';}?>"  style="display:inline-flex; min-width:200px; flex-grow:4; ">
 			<h3 class="posttitle"><?php echo $ticket['title']; ?></h3>
 				<div class="postcard row">
 					<div class="col mainticketbody">
+					<div class="row-12 statusdiv">
 					<span class="dot" style="
 					<?php if($ticket['status']=="Open"){//if ticket is open, set dot to green, else red//
 						echo'background-color:green;';
@@ -39,17 +40,20 @@
 						}
 						?>"> </span>
 						<?php if($ticket['status']=="Open"){//if ticket is open, echo Green 'Active, else red 'Completed'//
-						echo'<p class="status" style="color:green;">Active</p>';
+						echo'<p style="color:green;">Active</p>';
 						}
 						else{ 						
-						echo '<p class="status" style="color:red;">Completed</p>';
+						echo '<p style="color:red;">Completed</p>';
 						}
 						?>
+						</div>
+						<div class="row-12">
+						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> </small>
+						<small class="post-date">in <a class="effect-box" href=<?php if($ticket['ticketType'] =='General'){echo "general";}else{echo "technical";}?> <b> <?php echo $ticket['ticketType']; ?></b></a></small><br>
+						</div>
 						<br>
-						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> for <?php echo $ticket['raisedBy']; ?></small><br>
-						<small class="post-date"><a class="effect-box" href=<?php if($ticket['ticketType'] =='General'){echo "general";}else{echo "technical";}?> <b> <?php echo $ticket['ticketType']; ?></b></a></small><br>
-						<br>
-						<p class="sampleticketbody"><?php echo word_limiter($ticket['body'], 20); ?></p>
+						
+						<p class="sampleticketbody"><?php echo word_limiter($ticket['body'], 10); ?></p>
 					</div>	
 				</div>
 			<div class="openticket">	
@@ -57,4 +61,5 @@
 			</div>
 		</div>
 	<?php endforeach; ?>
+
 </div>

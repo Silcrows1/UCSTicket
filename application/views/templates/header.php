@@ -7,7 +7,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>                       
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/style.css">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet"> 
+		<link href="https://fonts.googleapis.com/css2?family=Cantarell&display=swap" rel="stylesheet">
 		</head>
 
 
