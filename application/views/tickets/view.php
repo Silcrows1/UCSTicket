@@ -1,6 +1,7 @@
 
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>
+	<button class="btn btn-primary viewbtn"><a href="<?php echo base_url('/tickets/delete/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Delete ticket</a></button>
 		<div class="card col-12">
 			<h3 class="posttitle"><?php echo $ticket['title']; ?></h3>
 			<div class="postcard row">
@@ -49,15 +50,17 @@
 							echo'<button class="btn btn-primary viewbtn"><a href="'.base_url('/comments/create_comments/'.$ticket['id']).'" style="max-width:100px;" role="button">Add comment</a></button>';
 							}
 							else{ 						
-							echo '<button class="btn btn-primary viewbtn"><a href="" style="max-width:100px;" role="button" disabled>Locked</a></button>';
+							echo '<button class="btn btn-primary viewbtn">Locked</button>';
 							} ?>		
 		</div>
 	<?php endforeach; ?>
+
 	<?php foreach($comments as $comment) : ?>
 	<div class="card col-12 comments">
 		<div class="row">
 		
 		<span><p>Posted by <?php echo $comment['FirstName'].' '.$comment['LastName'].' on '.$comment['created_at']; ?></p></span>
+
 		<p><?php echo $comment['body']?></p>
 		</div>
 		<a href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>">Delete</a>

@@ -27,6 +27,18 @@
 				redirect('tickets');
 			}
 		}
+
+		public function deletethread($id){
+			if ($this->session->userdata('Role')!='Admin')
+			{
+				redirect('tickets');
+			}
+			else
+			{
+			$data['ticket'] = $this->Comment_model->deletecommentthread($id);
+			redirect('tickets');
+			}	
+		}
 		public function delete($id){
 			if ($this->session->userdata('Role')!='Admin')
 			{

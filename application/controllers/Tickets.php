@@ -23,6 +23,19 @@
 			$this->load->view('templates/footer');
 
 		}
+		public function delete($id){
+			if ($this->session->userdata('Role')!='Admin')
+			{
+				redirect('tickets');
+			}
+			else
+			{
+			$this->Comment_model->deletecommentthread($id);
+			$this->Ticket_model->deleteticket($id);
+			redirect('tickets');
+			}		
+
+		}
 		// technical or general page
 		public function options(){
 			$this->load->view('templates/header');

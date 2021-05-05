@@ -108,5 +108,11 @@ class Ticket_model extends CI_model{
         $query = $this->db->get();
         return $query->result_array();			
     }
+		public function deleteticket($id){
+		$this->db->where('id', $id);
+		$this->db->delete('tickets');
+		return true;
+
+		}
 }
 

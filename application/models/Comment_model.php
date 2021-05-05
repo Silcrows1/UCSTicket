@@ -9,21 +9,35 @@
 		}
 
 		public function createComment(){	
-		var_dump($id);
 		$data = array(
 			'ticketid' => $this->input->post('id'),
 			'body' => $this->input->post('body'),
 			'type' => $this->input->post('type'),
 			'Staffid'=> $this->session->userdata['user_id'],
 		);
-		//insert ticket into database
-		return $this->db->insert('comments', $data);		
+		if ($data['type']=="resolution"){
+			
+			$this->db->set('status', 'Closed');
+			$this->db->where('id', $data['ticketid']);
+			$this->db->update('tickets');
+			return $this->db->insert('comments', $data);	
+
 		}
+		else{
+			return $this->db->insert('comments', $data);	
+		}
+	}
+
 
 		public function deletecomment($id){
 			$this->db->where('id', $id);
 			$this->db->delete('comments');
 			return true;
-
+		}
+		
+		public function deletecommentthread($id){
+			$this->db->where('ticketid', $id);
+			$this->db->delete('comments');
+			return true;
 		}
 	}
