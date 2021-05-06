@@ -13,6 +13,11 @@ class ITAsset_model extends CI_model{
 			$this->db->delete('assets');
 			return true;
 		}
+		public function deleteticketassets($id){
+			$this->db->where('ticketid', $id);
+			$this->db->delete('assetsaffected');
+			return true;
+		}
 		public function create(){
 			$data = array(
 				'AssetName' => $this->input->post('name'),

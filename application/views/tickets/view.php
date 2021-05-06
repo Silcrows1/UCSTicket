@@ -1,8 +1,14 @@
 
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>
+	
+	<?php if ($ticket['ticketType']=="Technical"){
+			$this->session->set_flashdata('type', 'Technical');
+		}else{
+			$this->session->set_flashdata('type', 'General');
+		}?>
 	<button class="btn viewbtn delete"><a href="<?php echo base_url('/tickets/delete/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Delete ticket</a></button>
-		<div class="card col-12">
+		<div class="card col-12" style="flex-wrap:nowrap;">
 			<h3 class="posttitle"><?php echo $ticket['title']; ?></h3>
 			<div class="postcard row">
 				<div class="col-md-9 col-sm-12">
@@ -29,19 +35,29 @@
 						}
 						?>
 						</div>
-						<div class="row-12 statusdiv view">
-						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> </a></small>
-						</div>
+						
+							<div class="row-12 statusdiv view">
+								<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> </a></small>
+							</div>
+						
+						<!--add campuses assigned to ticket -->
+						
 						<div class="row-12 body">
 						<p class="viewbody"><?php echo $ticket['body']; ?> </p>
 						</div>
 					</div>
-				<div class="assetsview col-md-3 col-sm-12">
+				<div class="assetsview col-md-3 col-sm-12" style="flex-wrap:wrap;	">
 					<h5 class="assettext">Assets Affected</h5>
+
 					<?php foreach($assets as $asset) : ?>
-					<div class="row-3 assetlist">
-					
+					<div class="row-3 assetlist">					
 						<p><?php echo $asset['AssetName']; ?> <?php echo $asset['AssetType']; ?> </p>
+					</div>
+					<?php endforeach; ?><br>
+					<h5 class="assettext">Campus selected</h5>
+					<?php foreach($campusassigneds as $campusassigned) : ?>
+					<div class="row-3 assetlist">
+						<p class="campus"><?php echo $campusassigned['campus']; ?> campus</a></p>
 					</div>
 					<?php endforeach; ?>
 				</div>					

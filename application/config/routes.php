@@ -1,6 +1,8 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+
+$route['assigned/(:any)'] = 'tickets/viewassigned/$1';
 $route['tickets/search_category'] = 'tickets/search_category';
 $route['tickets/search'] = 'tickets/search';
 $route['createT'] = 'tickets/createT';

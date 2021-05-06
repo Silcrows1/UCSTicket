@@ -40,10 +40,20 @@ h4 {
 	float:right;
 	margin:0vw 1vw 0vw 1vw;
 }
-.searchbar{
-	float:right;
-	margin-bottom:3vh;
+.hide{
+	display:none;
+}
+.viewbody{
 	padding-right:2vw;
+	text-align:justify;
+}
+.posttitle{
+	margin:2vh;
+}
+.searchbar {
+	float: right;
+	margin-bottom: 3vh;
+	padding-right: 2vw;
 }
 .navbar > .container {
 	display: block;

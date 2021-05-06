@@ -9,20 +9,21 @@
 	<br>
 	<br>
 </div>
-<form action="<?php echo base_url(); ?>tickets/search_category" method="POST">
+<form style="margin:0px;" action="<?php echo base_url(); ?>tickets/search_category" method="POST">
     <select name="category" id="myselect" onchange="this.form.submit()">
 	<option disabled selected value> -- filter options -- </option>
-        <option value="Open">Open</option>
-        <option value="Closed">Closed</option>
+		<option value="Bridgwater">Bridgwater</option>
+		<option value="Taunton">Taunton</option>
 		<option value="All">View all</option>
     </select>
 </form>
-
+<a class="" href="<?php echo base_url('assigned/'.$this->session->userdata('user_id')); ?>"><p style ="<?php if (count($assigned) >'0'){ echo 'color:red;';} else{echo 'color:green;';}?>">You have <?php echo count($assigned);?> tickets to action. </p></a>
 <h2><?= $title ?></h2>
 <!--prevent users with no session from viewing tickets -->
 <?php if ($this->session->userdata('logged_in')!=TRUE) {
        redirect('users/login');	;
     }?>
+	
 <!--Ticket card foreach loop -->
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>

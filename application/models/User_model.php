@@ -34,19 +34,29 @@
 				return false;
 			}
 		}
-
+		//view all users
 		public function view_users(){
 			$userlist = $this->db->get('users');
 			return $userlist->result_array();
 		}
+		//view one user by ID.
 		public function view_user($id){
 			$this->db->from('users');
 			$this->db->where('users.id', $id);
 			$userfind = $this->db->get();
 
+			return $userfind->result_array();
+		}
+		//find all users assigned to a ticket and retrieve user details.
+		public function assignedusers($id){
+			$this->db->from('ticketsassigned');
+			$this->db->join('users', 'users.id = ticketsassigned.userid');
+			$this->db->where('ticketsassigned.ticketid', $id);
+			$userfind = $this->db->get();
 
 			return $userfind->result_array();
 		}
+		//delete user by id
 		public function delete_user($id){
 			$this->db->where('id', $id);
 			$this->db->delete('users');
