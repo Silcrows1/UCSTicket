@@ -4,6 +4,10 @@ class ITAsset_model extends CI_model{
 				$query = $this->db->get('assets');
 				return $query->result_array();    
 		}
+		public function assetcount(){
+		$query = $this->db->get('assets')->num_rows();
+		  
+		}
 		public function delete_asset($id){
 			$this->db->where('id', $id);
 			$this->db->delete('assets');
@@ -52,5 +56,20 @@ class ITAsset_model extends CI_model{
 			$this->db->select('*');
 			$query=$this->db->get_where('assetsaffected', array('assetsaffected.ticketid' => $id));
             return $query->result_array();
+		}
+		public function view_other_assets_ticket($id){
+		$this->db->select('*');
+		$this->db->from('assetsaffected');
+		$this->db->join('assets', 'assets.id = assetsaffected.assetid');
+		$this->db->where('assets.id =', $id);
+		$query =$this->db->get();
+		$query->result_array();	
+
+
+		return $query->result_array();	
+
+		 $str = $this->db->last_query();
+		 print_r($str);
+		return $query->result_array();
 		}
 	}

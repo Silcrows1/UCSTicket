@@ -1,7 +1,7 @@
 
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>
-	<button class="btn btn-primary viewbtn"><a href="<?php echo base_url('/tickets/delete/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Delete ticket</a></button>
+	<button class="btn viewbtn delete"><a href="<?php echo base_url('/tickets/delete/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Delete ticket</a></button>
 		<div class="card col-12">
 			<h3 class="posttitle"><?php echo $ticket['title']; ?></h3>
 			<div class="postcard row">
@@ -37,21 +37,24 @@
 						</div>
 					</div>
 				<div class="assetsview col-md-3 col-sm-12">
-					<h5>Assets Affected</h5>
+					<h5 class="assettext">Assets Affected</h5>
 					<?php foreach($assets as $asset) : ?>
-					<div class="row-3">
+					<div class="row-3 assetlist">
 					
 						<p><?php echo $asset['AssetName']; ?> <?php echo $asset['AssetType']; ?> </p>
 					</div>
 					<?php endforeach; ?>
 				</div>					
-			</div>	
+			</div>
+			<div class="buttons row-12">
+			<button class="btn viewbtn"><a href="<?php echo base_url('/tickets/edit/'.$ticket['id']) ?>"style="max-width:100px;" role="button">Edit ticket</a></button>
 			<?php if($ticket['status']=="Open"){//if ticket is open, set dot to green, else red//
-							echo'<button class="btn btn-primary viewbtn"><a href="'.base_url('/comments/create_comments/'.$ticket['id']).'" style="max-width:100px;" role="button">Add comment</a></button>';
+							echo'<button class="btn viewbtn"><a href="'.base_url('/comments/create_comments/'.$ticket['id']).'" style="max-width:100px;" role="button">Add comment</a></button>';
 							}
 							else{ 						
-							echo '<button class="btn btn-primary viewbtn">Locked</button>';
-							} ?>		
+							echo '<button class="btn viewbtn">Locked</button>';
+							} ?>	
+							</div>
 		</div>
 	<?php endforeach; ?>
 
@@ -63,7 +66,9 @@
 
 		<p><?php echo $comment['body']?></p>
 		</div>
+		<?php if($this->session->userdata('Role')=='Staff'||'Admin') : ?>
 		<a href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>">Delete</a>
+		<?php endif ?>	
 	</div>
 	<?php endforeach; ?>
 </div>

@@ -10,6 +10,17 @@
 			$this->load->view('tickets/index', $data);
 			$this->load->view('templates/footer');
 		}
+		public function archive(){
+			$data['title'] = "Archived Tickets";
+			$archived ="archived";
+			$data['assets'] = $this->ITAsset_model->viewassets();
+			$data['tickets'] = $this->Ticket_model->get_tickets($archived);
+
+			$this->load->view('templates/header');
+			//$this->load->view('templates/search');  //testing only allowing search from main index.
+			$this->load->view('tickets/index', $data);
+			$this->load->view('templates/footer');
+		}
 
 		public function view($id){
 			//retrieve ticket
@@ -33,9 +44,40 @@
 			$this->Comment_model->deletecommentthread($id);
 			$this->Ticket_model->deleteticket($id);
 			redirect('tickets');
-			}		
-
+			}
 		}
+		public function viewtoedit($id){
+		if ($this->session->userdata('Role')!='Admin')
+			{
+				redirect('tickets');
+			}
+		else
+			{
+			$data['tickets'] = $this->Ticket_model->view_ticket($id);
+			$data['assets'] = $this->ITAsset_model->view_assets_ticket($id);
+			$data['assetsrests'] = $this->ITAsset_model->viewassets();
+			//$data['assetsrest'] = $this->ITAsset_model->view_other_assets_ticket($id);
+			
+			$data['title'] = "Edit user";
+
+			$this->load->view('templates/header');
+			$this->load->view('tickets/edit', $data);
+			$this->load->view('templates/footer');
+			}			
+		}
+		public function editticket($id){
+			if ($this->session->userdata('Role')!='Admin')
+			{
+				redirect('tickets');
+			}
+			else
+			{
+
+			$data['ticket'] = $this->Ticket_model->editT($id);
+			redirect('tickets');
+			}	
+		}
+
 		// technical or general page
 		public function options(){
 			$this->load->view('templates/header');

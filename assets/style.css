@@ -139,12 +139,50 @@ a:hover {
 	box-shadow: 1px 1px 3px black;
 	margin: 0.5vh 0vh 0.5vh 0vh;
 }
-.viewbtn{
-	align-self:center;
-	margin-bottom:2vh;
+.buttons{
+	text-align:center;
+	background-color:transparent;
 }
+.viewbtn {
+	align-self: center;
+	margin-bottom: 2vh;
+	border-radius: 12px;
+	background: #e0e0e0;
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.form-control {
+	border-radius: 1px;
+	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+.input {
+	border-radius: 1px;
+	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+.select2-selection {
+	border-radius: 1px;
+	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+.delete {
+	border-style:solid;
+	border-width:1px;
+	border-color:red;
+}
+	.viewbtn:hover {
+		border-radius: 12px;
+		background: #e0e0e0;
+		box-shadow: inset 9px 9px 17px #bebebe, inset -9px -9px 17px #ffffff;
+	}
 .postcard{
 	padding:1vw 1vw 1vw 1vw;
+}
+.assetlist {
+	text-align: center;
+	padding-top: 0.5vh;
+	margin: 0.2vh;
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+.assettext{
+	text-align:center;
 }
 .card {
 	display: inline-flex;

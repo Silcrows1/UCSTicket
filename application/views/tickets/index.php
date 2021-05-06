@@ -2,7 +2,7 @@
 <div class="container searchbar col-lg-6 col-sm-12 col-xs-12">  
 	<form action="<?php echo base_url(); ?>tickets/search" method = "post" class="searchbar">
 	<label for="keyword">Search
-	<input type="text" name = "keyword" placeholder ="Search e.g name or title"label="Search" />
+	<input class = "input" type="text" name = "keyword" placeholder ="Search e.g name or title"label="Search" />
 	<input type="submit" value = "Search" />
 	</label>
 	</form>
@@ -57,7 +57,7 @@
 					</div>	
 				</div>
 			<div class="openticket">	
-			<a class="btn btn-primary open" href="<?php echo base_url('/tickets/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Open</a>
+			<a class="btn open viewbtn" href="<?php echo base_url('/tickets/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Open</a>
 			</div>
 		</div>
 	<?php endforeach; ?>

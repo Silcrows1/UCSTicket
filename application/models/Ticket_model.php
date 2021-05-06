@@ -4,13 +4,20 @@ class Ticket_model extends CI_model{
         $this->load->database();
     }
 	//view all tickets
-	public function get_tickets(){
+	public function get_tickets($archived = false){
+		if ($archived == FALSE){
 			$this->db->order_by("created_at", "DESC");
-            $query = $this->db->get('tickets');
-            return $query->result_array();    
+            $query = $this->db->get_where('tickets', array('status' => 'Open'));
+            return $query->result_array();  
+			}
+			else {
+			$this->db->order_by("created_at", "DESC");
+			$query = $this->db->get_where('tickets', array('status' => 'Closed'));
+			return $query->result_array();
+			}
 	}
 	public function count(){
-			$query = $this->db->get('tickets')->num_rows();
+		$query = $this->db->get('tickets')->num_rows();
 	}
 	//view specific ticket
 	public function view_ticket($id){
@@ -18,7 +25,71 @@ class Ticket_model extends CI_model{
 		return $query->result_array();
 	}
 	//create technical ticket
-	public function createT(){
+	public function editT($id){
+	
+		//get new array details
+		$data = array(
+			'title' => $this->input->post('title'),
+			'body' => $this->input->post('description'),
+			'raisedBy' => $this->input->post('raisedby'),
+			'user_id'=> $this->session->userdata['user_id'],
+			'ticketType' => 'Technical',
+		);
+		//find ticket and insert new details into database
+		$this->db->where('tickets.id', $id);
+		$this->db->update('tickets', $data);
+
+		//retrieve ticket details to get ticket id.
+		$this->db->from('tickets');
+		$this->db->select('tickets.id');
+		$this->db->where('tickets.title', $data['title']);
+        $this->db->where('tickets.body', $data['body']);
+		$this->db->where('tickets.user_id', $data['user_id']);
+		$query = $this->db->get();
+
+		$datanew = $query->result_array();
+		$data = array_column($datanew, 'id');
+
+		//retrieve asset types id from createT.
+		$values[] = $this->input->post('assettype');
+
+		//remove old assets
+		$this->db->from('assetsaffected');
+		$this->db->select('*');
+		$this->db->where('assetsaffected.ticketid', $id);
+		$this->db->delete('assetsaffected');
+
+		//count how many assets for loop if variable is not null.
+		if ($_POST['assettype']!=NULL){
+			$length = count($_POST['assettype']);
+			var_dump($length);
+			//combine ticket id with assetit for assetsaffected.
+				for($i=0; $i < $length; $i++){		
+					$affected = array(
+						'ticketid' => $data[0],
+						'assetid' => $values[0][$i],				
+					);			
+
+					$this->db->insert('assetsaffected', $affected);
+				}			
+					return $this->db->set($affected);
+			}
+		}
+		public function editG($id){
+	
+		//get new array details
+		$data = array(
+			'title' => $this->input->post('title'),
+			'body' => $this->input->post('description'),
+			'raisedBy' => $this->input->post('raisedby'),
+			'user_id'=> $this->session->userdata['user_id'],
+			'ticketType' => 'Technical',
+		);
+		//find ticket and insert new details into database
+		$this->db->where('tickets.id', $id);
+		$this->db->update('tickets', $data);
+		}
+		public function createT(){
 	
 		$data = array(
 			'title' => $this->input->post('title'),
@@ -58,10 +129,7 @@ class Ticket_model extends CI_model{
 			}			
 				return $this->db->set($affected);
 		}
-
-
-	public function createG(){
-	
+	public function createG(){	
 			$data = array(
 				'title' => $this->input->post('title'),
 				'body' => $this->input->post('description'),
@@ -114,5 +182,6 @@ class Ticket_model extends CI_model{
 		return true;
 
 		}
+	
 }
 
