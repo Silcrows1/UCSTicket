@@ -18,8 +18,9 @@
 			<th>Asset Name/Identifier</th>
 			<th>Asset Type</th>
 			<th>Asset Room</th>
-			<th>Edit</th>
-			<th>Delete</th>
+			<?php if ($this->session->userdata('Roles')=="Admin"){echo
+			"<th>Edit</th>";
+			echo "<th>Delete</th>"; } ?>
 		  </tr>
 		  <?php foreach($assets as $asset) : ?>
 		  <tr>
@@ -27,11 +28,18 @@
 			<td><?php echo $asset['AssetName'] ?></td>
 			<td><?php echo $asset['AssetType'] ?></td>
 			<td><?php echo $asset['AssetRoom'] ?></td>
-			<td><a class="btn viewbtn" href="<?php echo base_url('/itassets/viewasset/'.$asset['id']) ?>" style="max-width:100px;" role="button">Edit</a></td>
-			<td><a class="btn viewbtn" href="<?php echo base_url('/itassets/delete/'.$asset['id']) ?>" style="max-width:100px;" role="button">Delete</a></td>
-
-		  </tr>
-	<?php endforeach; ?>
+			<?php if ($this->session->userdata('Roles')=="Admin")
+			{			
+				echo'<td><a class="btn viewbtn" href="'.base_url('/itassets/viewasset/'.$asset['id']).'" style="max-width:100px;" role="button">Edit</a></td>';
+				echo'<td><a class="btn viewbtn" href="'.base_url('/itassets/delete/'.$asset['id']).'" style="max-width:100px;" role="button">Delete</a></td>';
+				echo '</tr>';
+			}
+			else
+			{
+				echo '</tr>';
+			}			
+			?>
+			<?php endforeach; ?>
 	</table> 
 	<a class="btn viewbtn" href="<?php echo base_url('/itassets/create/')?>" style="max-width:150px; margin-top:2vh;" role="button">Create Asset</a>
 </div>

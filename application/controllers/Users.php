@@ -141,7 +141,13 @@
 			}
 			else
 			{
-			$data['users'] = $this->User_model->edit_user();
+			if ($this->input->post('password') != NULL){
+				$enc_password = md5($this->input->post('password'));
+				$data['users'] = $this->User_model->edit_user($enc_password);
+			}
+			else{
+				$data['users'] = $this->User_model->edit_user();
+			}			
 			redirect('tickets');
 			}			
 		}

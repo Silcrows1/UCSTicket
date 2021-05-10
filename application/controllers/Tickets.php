@@ -74,7 +74,7 @@
 		$flash=$this->session->flashdata('type');
 
 
-		if ($this->session->userdata('Role')!='Admin')
+		if ($this->session->userdata('Role')!='Staff' && $this->session->userdata('Role')!='Admin')
 			{
 				redirect('tickets');
 			}
@@ -98,7 +98,7 @@
 		}
 		public function editticket($id){
 
-			if ($this->session->userdata('Role')!='Admin')
+			if ($this->session->userdata('Role')!='Admin' && $this->session->userdata('Role')!='Staff' )
 			{
 				redirect('tickets');
 			}
@@ -185,6 +185,7 @@
 
 		public function search(){
 		    $form_data = $this->input->post('keyword');
+			$data['assigned'] = $this->Ticket_model->getassignedtickets($this->session->userdata('user_id'));
             $data['tickets'] = $this->Ticket_model->search_tickets($form_data);
             //if the data post is empty, redirect to posts.
             if(empty($data['tickets'])){

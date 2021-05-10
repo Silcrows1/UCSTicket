@@ -20,10 +20,10 @@
     </a>
 	<?php if($this->session->userdata('Role')=='Admin') : ?>
 	<a class="btn navi MSButton" href="<?php echo base_url('/users/viewusers') ?>" style="max-width:120px;" role="button">View Users</a>
-	<a class="btn navi MSButton" href="<?php echo base_url('/itassets/viewassets') ?>" style="max-width:120px;" role="button">View Assets</a>
 	<a class="btn navi MSButton" href="<?php echo base_url('/archive') ?>" style="max-width:130px;" role="button">View Archive</a>
 	<?php endif ?>	
 	<?php if($this->session->userdata('logged_in')) : ?>
+	<a class="btn navi MSButton" href="<?php echo base_url('/itassets/viewassets') ?>" style="max-width:120px;" role="button">View Assets</a>
 	<a class="btn navi MSButton" href="<?php echo base_url('/options') ?>" style="max-width:130px;" role="button">Create Ticket</a>
 	<a class="btn navi MSButton" href="<?php echo base_url('assigned/'.$this->session->userdata('user_id')); ?>" style="max-width:100px;" role="button">Action</a>
 	<a class="btn navi MSButton" href="<?php echo base_url('/users/logout') ?>" style="max-width:100px;" role="button">Logout</a>

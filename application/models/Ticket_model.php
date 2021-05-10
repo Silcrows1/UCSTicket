@@ -44,7 +44,6 @@ class Ticket_model extends CI_model{
 			'title' => $this->input->post('title'),
 			'body' => $this->input->post('description'),
 			'raisedBy' => $this->input->post('raisedby'),
-			'user_id'=> $this->session->userdata['user_id'],
 			'ticketType' => 'Technical',
 		);
 		//find ticket and insert new details into database
@@ -52,16 +51,7 @@ class Ticket_model extends CI_model{
 		$this->db->update('tickets', $data);
 
 		//retrieve ticket details to get ticket id.
-		$this->db->from('tickets');
-		$this->db->select('tickets.id');
-		$this->db->where('tickets.title', $data['title']);
-        $this->db->where('tickets.body', $data['body']);
-		$this->db->where('tickets.user_id', $data['user_id']);
-		$query = $this->db->get();
-
-		$datanew = $query->result_array();
-		$data = array_column($datanew, 'id');
-
+		$data = $id;
 		//retrieve asset types id from createT.
 		$values[] = $this->input->post('assettype');
 
@@ -78,7 +68,7 @@ class Ticket_model extends CI_model{
 			//combine ticket id with assetit for assetsaffected.
 				for($i=0; $i < $length; $i++){		
 					$affected = array(
-						'ticketid' => $data[0],
+						'ticketid' => $data,
 						'assetid' => $values[0][$i],				
 					);			
 
@@ -105,7 +95,7 @@ class Ticket_model extends CI_model{
 			//combine ticket id with userid for ticketsassigned.
 				for($i=0; $i < $length; $i++){		
 					$assignedtickets = array(
-						'ticketid' => $data[0],
+						'ticketid' => $data,
 						'userid' => $assigned[0][$i],				
 					);	
 					$this->db->insert('ticketsassigned', $assignedtickets);
@@ -130,7 +120,7 @@ class Ticket_model extends CI_model{
 			//combine ticket id with userid for ticketsassigned.
 			for($i=0; $i < $length; $i++){		
 				$assignedcampus = array(
-					'ticketid' => $data[0],
+					'ticketid' => $data,
 					'campus' => $campus[0][$i],				
 				);	
 				$this->db->insert('campusassigned', $assignedcampus);
@@ -148,7 +138,6 @@ class Ticket_model extends CI_model{
 			'title' => $this->input->post('title'),
 			'body' => $this->input->post('description'),
 			'raisedBy' => $this->input->post('raisedby'),
-			'user_id'=> $this->session->userdata['user_id'],
 			'ticketType' => 'General',
 		);
 		//find ticket and insert new details into database
@@ -156,15 +145,8 @@ class Ticket_model extends CI_model{
 		$this->db->update('tickets', $data);
 
 		//retrieve ticket details to get ticket id.
-		$this->db->from('tickets');
-		$this->db->select('tickets.id');
-		$this->db->where('tickets.title', $data['title']);
-        $this->db->where('tickets.body', $data['body']);
-		$this->db->where('tickets.user_id', $data['user_id']);
-		$query = $this->db->get();
-
-		$datanew = $query->result_array();
-		$data = array_column($datanew, 'id');
+		
+		$data = $id;
 
 		//retrieve asset types id from createT.
 		$values[] = $this->input->post('assettype');
@@ -189,7 +171,7 @@ class Ticket_model extends CI_model{
 			//combine ticket id with userid for ticketsassigned.
 				for($i=0; $i < $length; $i++){		
 					$assignedtickets = array(
-						'ticketid' => $data[0],
+						'ticketid' => $data,
 						'userid' => $assigned[0][$i],				
 					);	
 					$this->db->insert('ticketsassigned', $assignedtickets);
@@ -214,7 +196,7 @@ class Ticket_model extends CI_model{
 			//combine ticket id with userid for ticketsassigned.
 			for($i=0; $i < $length; $i++){		
 				$assignedcampus = array(
-					'ticketid' => $data[0],
+					'ticketid' => $data,
 					'campus' => $campus[0][$i],				
 				);	
 				$this->db->insert('campusassigned', $assignedcampus);

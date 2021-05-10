@@ -23,7 +23,7 @@
 			else{
 				
 				$this->Comment_model->createComment();
-
+			
 				redirect('tickets');
 			}
 		}
@@ -40,7 +40,7 @@
 			}	
 		}
 		public function delete($id){
-			if ($this->session->userdata('Role')!='Admin')
+			if ($this->session->userdata('Role')!='Admin' && $this->session->userdata('Role')!='Staff')
 			{
 				redirect('tickets');
 			}

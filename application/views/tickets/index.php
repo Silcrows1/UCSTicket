@@ -1,4 +1,3 @@
-
 <div class="container searchbar col-lg-6 col-sm-12 col-xs-12">  
 	<form action="<?php echo base_url(); ?>tickets/search" method = "post" class="searchbar">
 	<label for="keyword">Search
@@ -17,7 +16,8 @@
 		<option value="All">View all</option>
     </select>
 </form>
-<a class="" href="<?php echo base_url('assigned/'.$this->session->userdata('user_id')); ?>"><p style ="<?php if (count($assigned) >'0'){ echo 'color:red;';} else{echo 'color:green;';}?>">You have <?php echo count($assigned);?> tickets to action. </p></a>
+
+<a class=""  href="<?php echo base_url('assigned/'.$this->session->userdata('user_id')); ?>"><p style ="<?php if (count($assigned) >'0'){ echo 'color:red;';} else{echo 'color:green;';}?>">You have <?php echo count($assigned);?> tickets to action. </p></a>
 <h2><?= $title ?></h2>
 <!--prevent users with no session from viewing tickets -->
 <?php if ($this->session->userdata('logged_in')!=TRUE) {
@@ -28,7 +28,7 @@
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>
 		<div class="card tickets <?php if ($ticket['status'] =="Open") {echo 'active';} else {echo 'closed';}?>"  style="display:inline-flex; min-width:200px; flex-grow:4; ">
-			<h3 class="posttitle"><?php echo word_limiter($ticket['title'], 5); ?></h3>
+			<h3 class="posttitle"><?php echo character_limiter($ticket['title'], 40); ?></h3>
 				<div class="postcard row">
 					<div class="col mainticketbody">
 					<div class="row-12 statusdiv">
@@ -54,7 +54,7 @@
 						</div>
 						<br>
 						
-						<p class="sampleticketbody"><?php echo word_limiter($ticket['body'], 10); ?></p>
+						<p class="sampleticketbody"><?php echo character_limiter($ticket['body'], 50); ?></p>
 					</div>	
 				</div>
 			<div class="openticket">	

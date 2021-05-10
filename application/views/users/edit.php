@@ -16,9 +16,13 @@
 		<input type="text" class="form-control" name="email" placeholder="Add Title" value="<?php echo $user['email']?>">
 		</div>
 		<div class="form-group">
+		<label>Password</label>
+		<input type="text" class="form-control" name="password" placeholder="Enter new password if required">
+		</div>
+		<div class="form-group">
 		<label>Department</label>
 		<input type="text" class="form-control" name="department" placeholder="Add Title" value="<?php echo $user['department']?>">
-		</div>
+		</div>		
 		<div class="form-group">		
 		<label>Role Select</label>
 		<select class="form-control" name="roles">
@@ -26,6 +30,7 @@
 			<option value="Staff"<?php if($user['roles']=='Staff') { echo "selected";}?>>Staff</option>
 		</select>
 		</div>
+		
 		<button type="submit" class="btn viewbtn">submit</button>
 	<?php endforeach; ?>
 	</table> 

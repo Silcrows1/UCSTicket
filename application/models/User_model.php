@@ -62,7 +62,20 @@
 			$this->db->delete('users');
 			return true;
 		}
-		public function edit_user(){
+		public function edit_user($enc_password = NULL){
+		if ($enc_password != NULL)
+		{
+			$data =array(
+			'id' => $this->input->post('id'),
+			'password' => $enc_password,
+			'FirstName' => $this->input->post('firstName'),
+			'LastName' => $this->input->post('lastName'),
+			'department' => $this->input->post('department'),
+			'Email'=> $this->input->post('email'),
+			'roles'=> $this->input->post('roles')
+			);			
+		}		
+		else{
 			$data =array(
             'id' => $this->input->post('id'),
             'FirstName' => $this->input->post('firstName'),
@@ -71,6 +84,7 @@
             'Email'=> $this->input->post('email'),
 			'roles'=> $this->input->post('roles')
 			);
+		}			
 			//where id=db id, set(update) entry with new variables
 			$this->db->where('id', $this->input->post('id'));
 			$this->db->set($data);

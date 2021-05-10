@@ -1,12 +1,14 @@
 <?php 
 	class ITAssets extends CI_Controller{
 		public function viewassets(){
+
 			$data['title'] = "Assets";
 			$data['assets'] = $this->ITAsset_model->viewassets();
 
 			$this->load->view('templates/header');
 			$this->load->view('assets/view', $data);
 			$this->load->view('templates/footer');
+			
 		}
 		public function deleteasset($id){
 			if ($this->session->userdata('Role')!='Admin')

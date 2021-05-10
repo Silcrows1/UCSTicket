@@ -2,7 +2,7 @@
 <?php echo validation_errors(); ?>
 <?php foreach($tickets as $ticket) : ?>
 
-		<?php echo form_open_multipart('tickets/editticket/'.$ticket['id']); ?>
+		<?php echo form_open_multipart('tickets/editticket/'.$ticket['ticketid']); ?>
 			
 	<div class="form-group loginelement">
 	<h2><?php echo $type; ?> Ticket Edit</h2>
@@ -11,7 +11,7 @@
 	</div>
 
 	
-	
+	<!-- if form is for a general ticket, hide assets-->
 	<div class="form-group<?php if($type=="General"){echo" hide";} ?>">		
 	<label>Asset Type</label>
 	<select class="form-control assetselect" name="assettype[]" multiple>
@@ -24,9 +24,9 @@
 		<?php if($assetsrest['id'] != $asset['id']) {
 			echo "<option value=".$assetsrest['id'].">".$assetsrest['AssetName'].' '.$assetsrest['AssetType']."</option>";}?>
 	<?php endforeach; ?>	
-	</select>
-	
+	</select>	
 	</div>
+
 	<div class="form-group loginelement">
 		<label>Issue raised by</label>
 		<input type='text' class="form-control" name="raisedby" value="<?php echo $ticket['raisedBy']?>">

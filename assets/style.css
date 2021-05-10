@@ -25,6 +25,7 @@ body {
 	background: url(svg2.svg);
 	background-image: url(svg2.svg), none;
 	background-size: cover;
+	background-attachment: fixed;
 }
 
 table {
@@ -77,12 +78,15 @@ label {
 .loginelement{
 	margin:1vh 0vh 2vh 0vh;
 }
+.userstable {
+	box-shadow: 0 0 5px #333;
+}
 .userstable, th, td {
 	border-style: solid;
 	border-width: 1px;
 	text-align: center;
 	border-collapse: collapse;
-	border:none;
+	border: none;
 }
 tr {
 	border-bottom: 1px solid #dddddd;
@@ -92,6 +96,9 @@ th {
 }
 tr:nth-child(even) {
 	background-color: #f5f5f5
+}
+tr:hover {
+	background-color: #bbd5fa;
 }
 .login{
 	max-width:800px;
@@ -176,7 +183,6 @@ viewbtn:hover {
 	border-style: solid;
 	border-width: 1px;
 	box-shadow: 1px 1px 3px black;
-	margin: 0.5vh 0vh 0.5vh 0vh;
 	padding:2vh;
 	min-height:15vh;
 }

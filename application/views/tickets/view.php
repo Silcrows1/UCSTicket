@@ -40,8 +40,7 @@
 								<small class="post-date">Posted at: <?php echo (date("H:i A",strtotime ($ticket['created_at']))).' on '.(date("l jS F Y",strtotime ($ticket['created_at']))). ' by ' .($ticket['FirstName']).' '.($ticket['LastName'])?> </a></small>
 							</div>
 						
-						<!--add campuses assigned to ticket -->
-						
+						<!--add campuses assigned to ticket -->						
 						<div class="row-12 body">
 						<p class="viewbody" style="background-color:#f2f2f2; width:98%"><?php echo $ticket['body']; ?> </p>
 						</div>
@@ -67,8 +66,8 @@
 			</div>
 			<div class="buttons row-12" style=" margin-bottom:2vh;">			
 			<?php if($ticket['status']=="Open"){//if ticket is open, set dot to green, else red//
-							echo'<button class="btn viewbtn"><a href="'.base_url('/comments/create_comments/'.$ticket['id']).'" style="max-width:100px;" role="button">Add comment</a></button>';
-							echo '<button class="btn viewbtn"><a href="'.base_url('/tickets/edit/'.$ticket['id']).'"style="max-width:100px;" role="button">Edit ticket</a></button>';
+							echo'<button class="btn viewbtn"><a href="'.base_url('/comments/create_comments/'.$ticket['ticketid']).'" style="max-width:100px;" role="button">Add comment</a></button>';
+							echo '<button class="btn viewbtn"><a href="'.base_url('/tickets/edit/'.$ticket['ticketid']).'"style="max-width:100px;" role="button">Edit ticket</a></button>';
 							}
 							else{ 						
 							echo '<button class="btn viewbtn">Locked</button>';
@@ -87,9 +86,9 @@
 			</div>
 		</div>
 		<!--show delete button if logged in as admin-->
-		<?php if($this->session->userdata('Role')=='Admin') : ?>
+		
 		<a style="position:relative; bottom:0vh; margin:2vh 0vh 0vh 0vh;"href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>">Delete</a>
-		<?php endif ?>	
+		
 	</div>
 	<?php endforeach; ?>
 </div>
