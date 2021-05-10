@@ -170,7 +170,6 @@ class Ticket_model extends CI_model{
 						$this->db->insert('ticketsassigned', $assignedtickets);
 					}
 					//set all new entries
-					$this->db->set($assignedtickets);
 			}	
 		
 			//retrieve campuses to assign to from createT.
@@ -200,73 +199,75 @@ class Ticket_model extends CI_model{
 				
 
 		//create technical ticket		
-		public function createT(){
-		//store form data in an array.
-		$data = array(
-			'title' => $this->input->post('title'),
-			'body' => $this->input->post('description'),
-			'raisedBy' => $this->input->post('raisedby'),
-			'user_id'=> $this->session->userdata['user_id'],
-			'ticketType' => 'Technical',
-		);
-		//insert ticket into database
-		$this->db->insert('tickets', $data);
-		//retrieve ticket id of inserted ticket.
-		$data = $this->db->insert_id(); 
-		//delete all previous assetsaffected that were linked.
-		$this->db->from('assetsaffected');
-		$this->db->select('*');
-		$this->db->where('assetsaffected.ticketid', $id);
-		$this->db->delete('assetsaffected');
-		//count how many assets for loop if variable is not null.
-		if ($this->input->post('assettype')!= NULL){
-			$values[] = $this->input->post('assettype');
-			$length = count($_POST['assettype']);
-			//combine ticket id with assetit for assetsaffected.
+		public function createT()
+		{
+			//store form data in an array.
+			$data = array(
+				'title' => $this->input->post('title'),
+				'body' => $this->input->post('description'),
+				'raisedBy' => $this->input->post('raisedby'),
+				'user_id'=> $this->session->userdata['user_id'],
+				'ticketType' => 'Technical',
+			);
+			//insert ticket into database
+			$this->db->insert('tickets', $data);
+			//retrieve ticket id of inserted ticket.
+			$data2 = $this->db->insert_id(); 
+			//delete all previous assetsaffected that were linked.
+			$this->db->from('assetsaffected');
+			$this->db->select('*');
+			$this->db->where('assetsaffected.ticketid', $data2);
+			$this->db->delete('assetsaffected');
+			//count how many assets for loop if variable is not null.
+			if ($this->input->post('assettype')!= NULL)
+			{
+				$values[] = $this->input->post('assettype');
+				$length = count($_POST['assettype']);
+				//combine ticket id with assetit for assetsaffected.
+					for($i=0; $i < $length; $i++)
+					{		
+						$affected = array(
+							'ticketid' => $data2,
+							'assetid' => $values[0][$i],				
+						);
+						//insert arrays for assets affected
+						$this->db->insert('assetsaffected', $affected);
+					}
+			}	
+			//count how many users assigned for loop if variable is not null.
+			if ($this->input->post('assigned')!= NULL){
+				$assigned[] = $this->input->post('assigned');
+				$length = count($_POST['assigned']);
+				var_dump($assigned);
+				var_dump($data2);
+				//combine ticket id with userid for ticketsassigned.
 				for($i=0; $i < $length; $i++){		
-					$affected = array(
-						'ticketid' => $data,
-						'assetid' => $values[0][$i],				
-					);
-					//insert arrays for assets affected
-					$this->db->insert('assetsaffected', $affected);
+					$assignedtickets = array(
+						'ticketid' => $data2,
+						'userid' => $assigned[0][$i],				
+					);	
+					var_dump($assignedtickets);
+					//insert each entry into assetsaffected
+					$this->db->insert('ticketsassigned', $assignedtickets);
 				}
-				$this->db->set($affected);
-		}	
-		//count how many users assigned for loop if variable is not null.
-		if ($this->input->post('assigned')!= NULL){
-			$assigned[] = $this->input->post('assigned');
-			$length = count($_POST['assigned']);
-			//combine ticket id with userid for ticketsassigned.
-			for($i=0; $i < $length; $i++){		
-				$assignedtickets = array(
-					'ticketid' => $data,
-					'userid' => $assigned[0][$i],				
-				);	
-				//insert each entry into assetsaffected
-				$this->db->insert('ticketsassigned', $assignedtickets);
-			}
-			//set all new entries
-			$this->db->set($assignedtickets);
-		}		
-		//count how many campus are assigned to the ticket for loop if variable is not null.
-		if ($this->input->post('campus')!= NULL){
-			$campus[] = $this->input->post('campus');
-			$length = count($_POST['campus']);
-			//combine ticket id with userid for ticketsassigned.
-			for($i=0; $i < $length; $i++){		
-				$assignedcampus = array(
-					'ticketid' => $data,
-					'campus' => $campus[0][$i],				
-				);
-				//insert each entry into campusassigned
-				$this->db->insert('campusassigned', $assignedcampus);
-			}
-			//set all new entries
-			$this->db->set($assignedcampus);
+				//set all new entries
+			}		
+			//count how many campus are assigned to the ticket for loop if variable is not null.
+			if ($this->input->post('campus')!= NULL){
+				$campus[] = $this->input->post('campus');
+				$length = count($_POST['campus']);
+				//combine ticket id with userid for ticketsassigned.
+				for($i=0; $i < $length; $i++){		
+					$assignedcampus = array(
+						'ticketid' => $data2,
+						'campus' => $campus[0][$i],				
+					);
+					//insert each entry into campusassigned
+					$this->db->insert('campusassigned', $assignedcampus);
+				}
+				//set all new entries
+			}				
 		}
-				
-	}
 
 	public function createG(){	
 		//load form data into an array		
