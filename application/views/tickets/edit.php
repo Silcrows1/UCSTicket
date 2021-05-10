@@ -1,9 +1,10 @@
-
+<!--Validation errors show here -->
 <?php echo validation_errors(); ?>
+<!--Cycle through ticket array -->
 <?php foreach($tickets as $ticket) : ?>
-
-		<?php echo form_open_multipart('tickets/editticket/'.$ticket['ticketid']); ?>
-			
+	<!--Ticket form location -->
+	<?php echo form_open_multipart('tickets/editticket/'.$ticket['ticketid']); ?>
+	<!--Ticket title preload -->		
 	<div class="form-group loginelement">
 	<h2><?php echo $type; ?> Ticket Edit</h2>
 		<label>Ticket Title</label>
@@ -26,15 +27,17 @@
 	<?php endforeach; ?>	
 	</select>	
 	</div>
-
+	<!--Raised by preload -->
 	<div class="form-group loginelement">
 		<label>Issue raised by</label>
 		<input type='text' class="form-control" name="raisedby" value="<?php echo $ticket['raisedBy']?>">
 	</div>
+	<!--Ticket body preload -->
 	<div class="form-group loginelement">
 		<label>Description</label>
 		<input type='text' class="form-control" name="description" value="<?php echo $ticket['body']?>">
 	</div>
+	<!--campus selected preload -->
 	<div class="form-group">		
 		<label>Campus</label>
 		<select class="form-control assetselect" name="campus[]" multiple>
@@ -42,6 +45,7 @@
 		<option value="Bridgwater"<?php foreach($campusassigneds as $campusassigned) : ?> <?php if($campusassigned['campus'] =="Bridgwater"){ echo 'selected="Selected"';}?><?php endforeach; ?>>Bridgwater</option>
 		</select>
 	</div></br>
+	<!--Display all users and preload users assigned -->
 	<div class="form-group">		
 		<label>Assign to user/s</label>
 		<select class="form-control assetselect" name="assigned[]" multiple>

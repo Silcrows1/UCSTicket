@@ -1,11 +1,16 @@
+<!--Title -->
 <h2><? =$title; ?></h2>
+<!--Validation Errors appear here -->
 <?php echo validation_errors(); ?>
+<!--Form Location-->
 <?php echo form_open('itassets/create'); ?>
 	<div class="form-group loginelement">
+		<!--Asset Name-->
 		<label>Asset Name</label>
 		<input type='text' class="form-control" name="name" placeholder="Name">
 	</div>
-	<div class="form-group">		
+	<div class="form-group">
+	<!--Asset Type -->
 	<label>Asset Type</label>
 	<select class="form-control" name="type">
 		<option value="Laptop">Laptop</option>
@@ -19,6 +24,7 @@
 		<option value="TV">TV</option>
 	</select>
 	</div>
+	<!--Asset Room -->
 	<div class="form-group loginelement">
 		<label>Room</label>
 		<input type='text' class="form-control" name="room" placeholder="Room">

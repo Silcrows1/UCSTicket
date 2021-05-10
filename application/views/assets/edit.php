@@ -5,11 +5,13 @@
 <input type="hidden" name="id" value="<?php echo $asset['id']; ?>">
 	<div class="form-group loginelement">
 		<label>Asset Name</label>
+		<!--Preload name -->
 		<input type='text' class="form-control" name="AssetName" placeholder="Name"value="<?php echo $asset['AssetName']?>">
 	</div>
 	<div class="form-group">		
 	<label>Asset Type</label>
 	<select class="form-control" name="AssetType">
+		<!--if assettype matches, select the corresponding option -->
 		<option value="Laptop" <?php if($asset['AssetType']=='Laptop'){ echo "selected";}?> >Laptop</option>
 		<option value="Computer" <?php if($asset['AssetType']=='Computer'){ echo "selected";}?> >Computer</option>
 		<option value="Mouse" <?php if($asset['AssetType']=='Mouse'){ echo "selected";}?> >Mouse</option>
@@ -21,6 +23,7 @@
 		<option value="TV" <?php if($asset['AssetType']=='TV'){ echo "selected";}?> >TV</option>
 	</select>
 	</div>
+	<!--Preload room -->
 	<div class="form-group loginelement">
 		<label>Room</label>
 		<input type='text' class="form-control" name="AssetRoom" placeholder="Room"value="<?php echo $asset['AssetRoom']?>">
