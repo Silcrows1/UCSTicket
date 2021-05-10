@@ -124,7 +124,7 @@
 
 		}
 		//create technical function
-		public function createT(){		
+		public function createT(){			
 			$data['title']='Create technical ticket';
 			$data['assets'] = $this->ITAsset_model->viewassets();
 			$data['users'] = $this->User_model->view_users();

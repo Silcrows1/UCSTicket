@@ -21,7 +21,15 @@ h3 {
 h4 {
 	font-family: 'Cantarell', serif;
 }
+body {
+	background: url(svg2.svg);
+	background-image: url(svg2.svg), none;
+	background-size: cover;
+}
 
+table {
+	background-color: white;
+}
 .row {
 	--bs-gutter-x: 0rem;
 }
@@ -46,6 +54,8 @@ h4 {
 .viewbody{
 	padding-right:2vw;
 	text-align:justify;
+	min-height:10vh;
+	display:inline-flex;
 }
 .posttitle{
 	margin:2vh;
@@ -71,9 +81,17 @@ label {
 	border-style: solid;
 	border-width: 1px;
 	text-align: center;
+	border-collapse: collapse;
+	border:none;
+}
+tr {
+	border-bottom: 1px solid #dddddd;
 }
 th {
 	background-color: #e0e0e0;
+}
+tr:nth-child(even) {
+	background-color: #f5f5f5
 }
 .login{
 	max-width:800px;
@@ -104,7 +122,7 @@ th {
 a {
 	color: #000000;
 	text-decoration: none;
-	font-weight:700;
+	font-weight:600;
 }
 
 a:hover {
@@ -112,6 +130,17 @@ a:hover {
 	text-decoration: none;
 	cursor: pointer;
 }
+.viewbtn {
+	color: #000000;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+viewbtn:hover {
+	color: #5b5a5a;
+	text-decoration: none;
+	cursor: pointer;
+} 
 
 .open {
 	margin-top:1vh;
@@ -148,6 +177,14 @@ a:hover {
 	border-width: 1px;
 	box-shadow: 1px 1px 3px black;
 	margin: 0.5vh 0vh 0.5vh 0vh;
+	padding:2vh;
+	min-height:15vh;
+}
+.comment {
+	background-color: #f2f2f2;
+}
+.dim {
+	color: rgba(0, 0, 0, 0.5);
 }
 .buttons{
 	text-align:center;
@@ -155,11 +192,18 @@ a:hover {
 }
 .viewbtn {
 	align-self: center;
-	margin-bottom: 2vh;
+	margin:0.5vh;
 	border-radius: 12px;
 	background: #e0e0e0;
 	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
+.viewbtn:hover {
+	border-radius: 12px;
+	background: #e0e0e0;
+	box-shadow: inset 9px 9px 17px #bebebe, inset -9px -9px 17px #ffffff;
+}
+
+
 .form-control {
 	border-radius: 1px;
 	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
@@ -172,16 +216,6 @@ a:hover {
 	border-radius: 1px;
 	box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
 }
-.delete {
-	border-style:solid;
-	border-width:1px;
-	border-color:red;
-}
-	.viewbtn:hover {
-		border-radius: 12px;
-		background: #e0e0e0;
-		box-shadow: inset 9px 9px 17px #bebebe, inset -9px -9px 17px #ffffff;
-	}
 .postcard{
 	padding:1vw 1vw 1vw 1vw;
 }
@@ -202,6 +236,7 @@ a:hover {
 .statusdiv {
 	width: 100%;
 	display: flex;
+	margin:-1vh 0vh -1vh 0vh
 }
 select {
 	-webkit-appearance: button;
@@ -232,4 +267,16 @@ select {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	margin-bottom:3vh;
+}
+.delete {
+	color: white;
+	background-color: #f00e0e;
+	border-color: red;
+	margin: 1vh;
+}
+
+.delete:hover {
+	color: white;
+	background-color: #ff3838;
+	border-color: red;
 }

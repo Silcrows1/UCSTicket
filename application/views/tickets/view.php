@@ -7,7 +7,7 @@
 		}else{
 			$this->session->set_flashdata('type', 'General');
 		}?>
-	<button class="btn viewbtn delete"><a href="<?php echo base_url('/tickets/delete/'.$ticket['id']) ?>" style="max-width:100px;" role="button">Delete ticket</a></button>
+	<button class="btn delete"><a href="<?php echo base_url('/tickets/delete/'.$ticket['ticketid']) ?>" onclick="return confirm('\t Are you sure you want to delete this ticket? \t \n\t This is irreversible \t') " style="max-width:100px;" role="button">Delete ticket</a></button>
 		<div class="card col-12" style="flex-wrap:nowrap;">
 			<h3 class="posttitle"><?php echo $ticket['title']; ?></h3>
 			<div class="postcard row">
@@ -37,35 +37,38 @@
 						</div>
 						
 							<div class="row-12 statusdiv view">
-								<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> </a></small>
+								<small class="post-date">Posted at: <?php echo (date("H:i A",strtotime ($ticket['created_at']))).' on '.(date("l jS F Y",strtotime ($ticket['created_at']))). ' by ' .($ticket['FirstName']).' '.($ticket['LastName'])?> </a></small>
 							</div>
 						
 						<!--add campuses assigned to ticket -->
 						
 						<div class="row-12 body">
-						<p class="viewbody"><?php echo $ticket['body']; ?> </p>
+						<p class="viewbody" style="background-color:#f2f2f2; width:98%"><?php echo $ticket['body']; ?> </p>
 						</div>
 					</div>
-				<div class="assetsview col-md-3 col-sm-12" style="flex-wrap:wrap;	">
-					<h5 class="assettext">Assets Affected</h5>
-
-					<?php foreach($assets as $asset) : ?>
-					<div class="row-3 assetlist">					
-						<p><?php echo $asset['AssetName']; ?> <?php echo $asset['AssetType']; ?> </p>
+				<div class="assetsview col-md-3 col-sm-12" style="flex-wrap:wrap; ">
+					<div class="assetsview" style=" <?php if ($ticket['ticketType']=="General"){echo "display:none"; }?>">
+						<h5 class="assettext">Assets Affected</h5>
+						<?php foreach($assets as $asset) : ?>
+						<div class="row-3 assetlist" >					
+							<p ><?php echo $asset['AssetName']; ?> <?php echo $asset['AssetType']; ?> </p>
+						</div>
+						<?php endforeach; ?><br>
 					</div>
-					<?php endforeach; ?><br>
+					<div class="assetsview" style="flex-wrap:wrap; ">
 					<h5 class="assettext">Campus selected</h5>
 					<?php foreach($campusassigneds as $campusassigned) : ?>
 					<div class="row-3 assetlist">
 						<p class="campus"><?php echo $campusassigned['campus']; ?> campus</a></p>
 					</div>
 					<?php endforeach; ?>
+					</div>
 				</div>					
 			</div>
-			<div class="buttons row-12">
-			<button class="btn viewbtn"><a href="<?php echo base_url('/tickets/edit/'.$ticket['id']) ?>"style="max-width:100px;" role="button">Edit ticket</a></button>
+			<div class="buttons row-12" style=" margin-bottom:2vh;">			
 			<?php if($ticket['status']=="Open"){//if ticket is open, set dot to green, else red//
 							echo'<button class="btn viewbtn"><a href="'.base_url('/comments/create_comments/'.$ticket['id']).'" style="max-width:100px;" role="button">Add comment</a></button>';
+							echo '<button class="btn viewbtn"><a href="'.base_url('/tickets/edit/'.$ticket['id']).'"style="max-width:100px;" role="button">Edit ticket</a></button>';
 							}
 							else{ 						
 							echo '<button class="btn viewbtn">Locked</button>';
@@ -76,14 +79,16 @@
 
 	<?php foreach($comments as $comment) : ?>
 	<div class="card col-12 comments">
-		<div class="row">
-		
-		<span><p>Posted by <?php echo $comment['FirstName'].' '.$comment['LastName'].' on '.$comment['created_at']; ?></p></span>
-
-		<p><?php echo $comment['body']?></p>
+		<div class="row ">		
+			<p class="dim">Posted by <?php echo $comment['FirstName'].' '.$comment['LastName'].' at '.(date("H:i A",strtotime ($comment['created_at']))).' on '.(date("l jS F Y",strtotime ($comment['created_at']))); ?></p>
+			<?php if($comment['type'] =="resolution"){echo "<p class='' style='color:#00a125; margin-top:-1vh;'> Marked as <b> ". ucwords($comment['type'])."</b></p>";}?>
+			<div class="container comment">
+			<p><?php echo $comment['body']?></p>
+			</div>
 		</div>
-		<?php if($this->session->userdata('Role')=='Staff'||'Admin') : ?>
-		<a href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>">Delete</a>
+		<!--show delete button if logged in as admin-->
+		<?php if($this->session->userdata('Role')=='Admin') : ?>
+		<a style="position:relative; bottom:0vh; margin:2vh 0vh 0vh 0vh;"href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>">Delete</a>
 		<?php endif ?>	
 	</div>
 	<?php endforeach; ?>

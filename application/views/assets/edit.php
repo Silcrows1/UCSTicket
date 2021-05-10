@@ -25,6 +25,6 @@
 		<label>Room</label>
 		<input type='text' class="form-control" name="AssetRoom" placeholder="Room"value="<?php echo $asset['AssetRoom']?>">
 	</div>	
-	<button type="submit" class="btn btn-primary">submit</button>
+	<button type="submit" class="btn viewbtn">submit</button>
 <?php echo form_close(); ?>
 	<?php endforeach; ?>

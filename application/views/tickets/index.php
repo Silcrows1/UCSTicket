@@ -28,7 +28,7 @@
 <div class="container" style="flex-wrap:wrap; display:flex;	">
 	<?php foreach($tickets as $ticket) : ?>
 		<div class="card tickets <?php if ($ticket['status'] =="Open") {echo 'active';} else {echo 'closed';}?>"  style="display:inline-flex; min-width:200px; flex-grow:4; ">
-			<h3 class="posttitle"><?php echo $ticket['title']; ?></h3>
+			<h3 class="posttitle"><?php echo word_limiter($ticket['title'], 5); ?></h3>
 				<div class="postcard row">
 					<div class="col mainticketbody">
 					<div class="row-12 statusdiv">
@@ -49,7 +49,7 @@
 						?>
 						</div>
 						<div class="row-12">
-						<small class="post-date">Posted on: <?php echo $ticket['created_at']; ?> </small>
+						<small class="post-date">Posted at: <?php echo (date("H:i A",strtotime ($ticket['created_at']))).' on '.(date("l jS F Y",strtotime ($ticket['created_at']))); ?>  </small>
 						<small class="post-date">in <a class="effect-box" href=<?php if($ticket['ticketType'] =='General'){echo "general";}else{echo "technical";}?> <b> <?php echo $ticket['ticketType']; ?></b></a></small><br>
 						</div>
 						<br>

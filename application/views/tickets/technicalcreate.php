@@ -1,5 +1,8 @@
 <h2><? =$title; ?></h2>
 <?php echo validation_errors(); ?>
+<?php if ($this->session->userdata('logged_in')!=TRUE) {
+       redirect('users/login');	;
+    }?>
 <?php echo form_open('createT'); ?>
 	<div class="form-group loginelement">
 		<label>Ticket Title</label>
@@ -32,9 +35,7 @@
 	<br>
 	<div class="form-group">		
 	<label>Assign to user/s</label>
-	<select class="form-control assetselect" name="assigned[]" multiple>
-		<option value="0" selected>All users</option>
-		
+	<select class="form-control assetselect" name="assigned[]" multiple>		
 	<?php foreach($users as $user) : ?>
 	
 		<option value="<?php echo $user['id']?>"><?php echo $user['FirstName'].' '.$user['LastName']  ?></option>

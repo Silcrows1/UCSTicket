@@ -35,7 +35,6 @@
 </nav>
 <div class="container">
 
-
 <?php if ($this->session->flashdata('login_failed')): ?>
 	<?php echo '<div class="flash"><p class="alert alert-success">'.$this->session->flashdata('login_failed').'</p></div>';?>
 	<?php endif; ?>

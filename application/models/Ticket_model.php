@@ -3,7 +3,7 @@ class Ticket_model extends CI_model{
     public function __construct(){
         $this->load->database();
     }
-	//view all tickets
+	//view all tickets function
 	public function get_tickets($archived = false){
 		if ($archived == FALSE){
 			$this->db->order_by("created_at", "DESC");
@@ -31,7 +31,9 @@ class Ticket_model extends CI_model{
 	}
 	//view specific ticket
 	public function view_ticket($id){
-		$query = $this->db->get_where('tickets', array('id' => $id));
+		$this->db->select("*, users.id AS 'userid', tickets.id as 'ticketid'");
+		$this->db->join('users', 'users.id = tickets.user_id');
+		$query = $this->db->get_where('tickets', array('tickets.id' => $id));
 		return $query->result_array();
 	}
 	//Edit technical tickets
@@ -369,9 +371,10 @@ class Ticket_model extends CI_model{
 	    //creating query with CI query builder, joining categories and posts table and building query that looks for a keyword
         //in posts body and title and comments name and body.
         $this->db->from('tickets');            
-        $this->db->select('*');
+        $this->db->select('tickets.id, tickets.created_at, tickets.user_id, tickets.raisedBy, tickets.title, tickets.status, tickets.body, tickets.ticketType');
 		$this->db->join('campusassigned', 'campusassigned.ticketid = tickets.id');
         $this->db->WHERE('campusassigned.campus',$keyword);
+		$this->db->WHERE('tickets.status !=','Closed');
 		$this->db->order_by("created_at", "DESC");
         $query = $this->db->get();
 
