@@ -69,6 +69,10 @@
 		public function delete_user($id){
 			$this->db->where('id', $id);
 			$this->db->delete('users');
+			//delete tickets assigned when user is delete
+			$this->db->where('userid', $id);
+			$this->db->delete('ticketsassigned');
+			
 			return true;
 		}
 

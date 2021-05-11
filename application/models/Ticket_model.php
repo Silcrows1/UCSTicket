@@ -40,7 +40,18 @@ class Ticket_model extends CI_model{
 		$this->db->select("*, users.id AS 'userid', tickets.id as 'ticketid'");
 		$this->db->join('users', 'users.id = tickets.user_id');
 		$query = $this->db->get_where('tickets', array('tickets.id' => $id));
+
+		if ($query->num_rows()==0){
+			$this->db->select("*, users.id AS 'userid', tickets.id as 'ticketid'");
+			//If user isnt found, set to admin user.
+			//user.id 15 is the current admin id and should be changed.
+			$this->db->join('users', 'users.id = 15');
+			$query = $this->db->get_where('tickets', array('tickets.id' => $id));
+			return $query->result_array();
+		}
+		else{
 		return $query->result_array();
+		}
 	}
 
 	//Edit technicaltickets

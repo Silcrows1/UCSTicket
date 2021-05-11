@@ -148,7 +148,7 @@
 			{
 			//delete user that matches the ID.
 			$this->User_model->delete_user($id);
-			redirect('tickets');
+			redirect('users/viewusers');
 			}			
 		}
 
