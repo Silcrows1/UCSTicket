@@ -34,6 +34,6 @@
 		<label>Confirm Password</label>
 		<input type='text' class="form-control" name="password2" placeholder="Confirm Password">
 	</div>
-	<button type="submit" class="btn btn-primary">submit</button>
+	<button type="submit" class="btn viewbtn">submit</button>
 <?php echo form_close(); ?>
 

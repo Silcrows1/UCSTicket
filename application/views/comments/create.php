@@ -18,5 +18,5 @@
 		<label>Comment</label>
 		<input type='text' class="form-control" name="body" placeholder="Write Comment Here">
 	</div>
-	<button type="submit" class="btn btn-primary">submit</button>
+	<button type="submit" class="btn viewbtn">submit</button>
 <?php echo form_close(); ?>

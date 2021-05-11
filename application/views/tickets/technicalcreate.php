@@ -52,7 +52,7 @@
 	</select>
 	</div>
 	<br>
-	<button type="submit" class="btn btn-primary">submit</button>
+	<button type="submit" class="btn viewbtn">submit</button>
 <?php echo form_close(); ?>
 
 
