@@ -307,7 +307,6 @@ class Ticket_model extends CI_model{
 				$this->db->insert('ticketsassigned', $assignedtickets);
 			}
 			//set all new entries
-			$this->db->set($assignedcampus);
 		}	
 		//count how many campus are assigned to the ticket for loop if variable is not null.
 		if ($this->input->post('campus')!= NULL){

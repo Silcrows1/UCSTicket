@@ -1,13 +1,16 @@
+<!DOCTYPE html>
 <html>
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="UCSTickets">
 		<!--Title -->
 		<title>UCSTicket</title>
 		<!--Bootstrap -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<!--Ajax required for Select2 -->
-		<link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
-		<script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> 
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script> 
 		<!--CSS -->
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/style.css">
 		<!--Fonts -->
@@ -20,7 +23,7 @@
 	<nav class="navbar navbar-light bg-light">
   <div class="container">
     <a class="navbar-brand" href="<?php echo base_url(); ?>">
-      <img src="<?php echo base_url(); ?>assets/icon.png" alt="" width="50" height="50" class="d-inline-block align-text-middle">
+      <img src="<?php echo base_url(); ?>assets/icon.png" alt="" width="50" height="auto" class="d-inline-block align-text-middle">
       UCSTickets
     </a>
 	<!--View User and Archive only available to Admin -->
