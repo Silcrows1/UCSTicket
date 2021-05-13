@@ -35,7 +35,7 @@
 			<?php if($this->session->userdata('Role')=='Admin') : ?>	
 			<!--Edit and delete buttons only viewable as Admin -->
 			<td><a class="btn viewbtn" href=" <?php echo base_url('/itassets/viewasset/'.$asset['id'])?>" style="max-width:100px;" role="button">Edit</a></td>
-			<td><a class="btn viewbtn" href="<?php echo base_url('/itassets/delete/'.$asset['id'])?>" style="max-width:100px;" role="button">Delete</a></td>
+			<td><a class="btn viewbtn" href="<?php echo base_url('/itassets/delete/'.$asset['id'])?>"  onclick="return confirm('\t Are you sure you want to delete this ticket? \t \n\t This is irreversible \t') " style="max-width:100px;" role="button" >Delete</a></td>
 			<?php endif ?>
 			</tr>
 	

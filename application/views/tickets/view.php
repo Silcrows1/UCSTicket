@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<!--Delete comment-->		
-		<a style="position:relative; bottom:0vh; margin:2vh 0vh 0vh 0vh;"href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>">Delete</a>
+		<a style="position:relative; bottom:0vh; margin:2vh 0vh 0vh 0vh;"href="<?php echo base_url('/comments/delete/'.$comment['commentid']) ?>"  onclick="return confirm('\t Are you sure you want to delete this ticket? \t \n\t This is irreversible\t') ">Delete</a>
 		
 	</div>
 	<?php endforeach; ?>

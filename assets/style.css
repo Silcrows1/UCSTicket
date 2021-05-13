@@ -26,6 +26,7 @@ body {
 	background-image: url(svg4.svg), none;
 	background-size: cover;
 	background-attachment: fixed;
+	background-color: #fcfcfc;
 }
 
 table {

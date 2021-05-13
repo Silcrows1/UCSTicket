@@ -34,7 +34,7 @@
 			<td><?php echo $user['roles'] ?></td>
 			<!--Edit and delete buttons for each user appended-->
 			<td><a class="btn viewbtn" href="<?php echo base_url('/users/view/'.$user['id']) ?>" style="max-width:100px;" role="button">Edit</a></td>
-			<td><a class="btn viewbtn" href="<?php echo base_url('/users/delete/'.$user['id']) ?>" style="max-width:100px;" role="button">Delete</a></td>
+			<td><a class="btn viewbtn" href="<?php echo base_url('/users/delete/'.$user['id']) ?> "  onclick="return confirm('\t Are you sure you want to delete this ticket? \t \n\t This is irreversible \t') " style="max-width:100px;" role="button">Delete</a></td>
 
 		  </tr>
 	<?php endforeach; ?>
