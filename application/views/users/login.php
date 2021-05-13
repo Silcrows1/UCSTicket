@@ -20,9 +20,12 @@
 					<input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
 				</div>
 				<div class="form-group">
-				<!--Password input with checkbox to show text -->
+				<!--Password input -->
 					<input type="password" name="password" id="password" class="form-control" placeholder="Password" required autofocus>
-					<input type="checkbox" onclick="myFunction()">Show Password 
+				</div>
+				<div class="form-group showPWdiv">
+				<!--checkbox to show text -->
+					<input type="checkbox" class="showPW" onclick="myFunction()">Show Password 
 				</div>
 				<br>
 				<button type="submit" class="btn btn-primary col-12"> Login </button>
