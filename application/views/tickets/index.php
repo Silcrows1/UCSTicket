@@ -55,6 +55,7 @@
 						<div class="row-12">
 						<!--Date and time posted, and ticket type -->
 						<small class="post-date">Posted at: <?php echo (date("H:i A",strtotime ($ticket['created_at']))).' on '.(date("l jS F Y",strtotime ($ticket['created_at']))); ?>  </small>
+						<!-- Link to all general or technical tickets -->
 						<small class="post-date">in <a class="effect-box" href=<?php if($ticket['ticketType'] =='General'){echo "general";}else{echo "technical";}?> <b> <?php echo $ticket['ticketType']; ?></b></a></small><br>
 						</div>
 						<br>

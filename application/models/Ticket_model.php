@@ -354,6 +354,7 @@ class Ticket_model extends CI_model{
         $this->db->from('tickets');            
         $this->db->select('*');
         $this->db->where('tickets.ticketType',$keyword);
+		$this->db->where('tickets.status', 'Open');
         $query = $this->db->get();
         return $query->result_array();			
 		}
