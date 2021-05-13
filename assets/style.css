@@ -284,6 +284,9 @@ select {
 	background-color: #ff3838;
 	border-color: red;
 }
+.delete a{
+	color:white;
+}
 .shadow {
 	box-shadow:1px 1px 4px;
 }

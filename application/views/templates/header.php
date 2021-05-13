@@ -3,6 +3,8 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="UCSTickets">
+		<link rel="icon" href="<?=base_url()?>/assets/Icon.png" type="image/gif">
+
 		<!--Title -->
 		<title>UCSTicket</title>
 		<!--Bootstrap -->
