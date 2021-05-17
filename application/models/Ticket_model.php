@@ -41,13 +41,21 @@ class Ticket_model extends CI_model{
 		$this->db->join('users', 'users.id = tickets.user_id');
 		$query = $this->db->get_where('tickets', array('tickets.id' => $id));
 
+		//is there are no found assigned users
 		if ($query->num_rows()==0){
+			//retrieve all users with the role admin and filter to the first entry
+			$admin = $this->db->get_where('users', array('users.roles' => "Admin"));
+			$row = $admin->row_array(0);
+			$str= $this->db->last_query();
+			print_r($str);
+			var_dump($row);
+
+			//retrieve ticket and user information
 			$this->db->select("*, users.id AS 'userid', tickets.id as 'ticketid'");
-			//If user isnt found, set to admin user.
-			//user.id 15 is the current admin id and should be changed.
-			$this->db->join('users', 'users.id = 15');
+			//If user isnt found, set to admin user from $admin query.
+			$this->db->join('users', 'users.id =' . $row['id']);
 			$query = $this->db->get_where('tickets', array('tickets.id' => $id));
-			return $query->result_array();
+			return $query->result_array(0);
 		}
 		else{
 		return $query->result_array();
