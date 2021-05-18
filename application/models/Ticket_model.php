@@ -47,8 +47,6 @@ class Ticket_model extends CI_model{
 			$admin = $this->db->get_where('users', array('users.roles' => "Admin"));
 			$row = $admin->row_array(0);
 			$str= $this->db->last_query();
-			print_r($str);
-			var_dump($row);
 
 			//retrieve ticket and user information
 			$this->db->select("*, users.id AS 'userid', tickets.id as 'ticketid'");
